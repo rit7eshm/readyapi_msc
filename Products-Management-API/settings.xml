@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" xsi:type="con:RestService" id="c6308d89-d26a-489b-8911-43282470f9f9" name="Products Management API" type="rest_ex" wadlVersion="https://swagger.io/openapiv3/specification" definitionUrl="http://localhost:9090/v3/api-docs">
-  <con:description id="1a4dae81-2819-49dd-a445-d0dc074de35c">This API exposes endpoints to manage products.</con:description>
+  <con:description id="90da9fc2-4860-4531-9d2b-8448cea1e485">This API exposes endpoints to manage products.</con:description>
   <con:settings id="854b273b-90f3-48eb-8064-f43534fd0cc6">
     <con:setting id="c6308d89-d26a-489b-8911-43282470f9f9fileName">Products-Management-API</con:setting>
   </con:settings>
