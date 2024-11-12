@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite xmlns:con="http://eviware.com/soapui/config" id="45f52032-342f-47a0-b1d0-cf3808ba1003" name="Identificacion">
+  <con:settings id="3e5beab1-fef0-4eb2-826d-ca0f78c22e08">
+    <con:setting id="45f52032-342f-47a0-b1d0-cf3808ba1003fileName">Identificacion</con:setting>
+  </con:settings>
+  <con:runType>SEQUENTIAL</con:runType>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testSuite>

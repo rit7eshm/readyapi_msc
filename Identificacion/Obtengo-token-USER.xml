@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="e0fbd290-a739-4562-a8ef-da5b0e2428d8" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Obtengo token USER" searchProperties="true" timeout="0">
+  <con:settings id="7ebc0fe5-c97e-4afc-a64f-1b081f445865">
+    <con:setting id="e0fbd290-a739-4562-a8ef-da5b0e2428d8fileName">Obtengo-token-USER</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="login USER" id="4c33daaf-cd2c-4bbc-aa06-4edb87979feb">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" resourcePath="/auth/login" methodName="login" xsi:type="con:RestRequestStep">
+      <con:restRequest name="login USER" id="f63b9cfe-3d0a-4383-a2b2-4d675f1bd254" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request>{\r
+  "email" : "user@email.com",\r
+  "password" : "upass"\r
+}</con:request>
+        <con:originalUri>http://localhost/auth/login</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="27b37cd5-b236-4af2-a276-ffe90c56a947" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="56311612-58bd-4d63-bdfd-9ccb024aedd5" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath RegEx Match" id="85e874b2-cf35-4119-801c-3c3da3c3e14b" name="JSONPath RegEx Match">
+          <con:configuration>
+            <path>$['accessToken']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+            <regEx>.*\..*\..*</regEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="transfer" name="actualizar Prop Token" id="193e2e88-9bf1-45cb-a3ed-d5269a8baee2">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:PropertyTransfersStep">
+      <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+        <con:name>token</con:name>
+        <con:sourceType>Response</con:sourceType>
+        <con:sourceStep>login USER</con:sourceStep>
+        <con:sourcePath>$['accessToken']</con:sourcePath>
+        <con:targetType>token_user</con:targetType>
+        <con:targetStep>#TestCase#</con:targetStep>
+        <con:targetPath/>
+        <con:type>JSONPATH</con:type>
+        <con:upgraded>true</con:upgraded>
+      </con:transfers>
+    </con:config>
+  </con:testStep>
+  <con:properties>
+    <con:property>
+      <con:name>token_user</con:name>
+      <con:value>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLHVzZXJAZW1haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpc3MiOiJjb20ubWljcm9jb21wYW55IiwiaWF0IjoxNzMwOTcwMDcwLCJleHAiOjE3MzEwNTY0NzB9.TOJb1kvVGN_KJ7F-DgD1jTabhjRFTh-Tpx1_dL0DlqGo3vYKQQQusr1VkkT13SEjjCPYkd2FInbkIbqZatwW1w</con:value>
+    </con:property>
+  </con:properties>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

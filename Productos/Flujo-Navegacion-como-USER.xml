@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="b7c61f57-a24a-4cdc-a669-09d81cd1ce53" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Flujo Navegacion como USER" searchProperties="true" timeout="0">
+  <con:settings id="4947c3cf-5ef5-40c5-85b0-4507df6ccf6b">
+    <con:setting id="b7c61f57-a24a-4cdc-a669-09d81cd1ce53fileName">Flujo-Navegacion-como-USER</con:setting>
+  </con:settings>
+  <con:testStep type="calltestcase" name="ejecutar Login USER" id="41023d80-f914-42c3-a0ae-5e1bef28ea16">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:RunTestCaseStep">
+      <con:targetTestCase>e0fbd290-a739-4562-a8ef-da5b0e2428d8</con:targetTestCase>
+      <con:properties>
+        <con:property>
+          <con:name>token_user</con:name>
+          <con:value>eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxLHVzZXJAZW1haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpc3MiOiJjb20ubWljcm9jb21wYW55IiwiaWF0IjoxNzMxNDE0MjM0LCJleHAiOjE3MzE1MDA2MzR9.KRq2JAvOG3s2stwxawEDpA6fEX3BadOUxnBs5rMnbyIutG-xruc4eOOgGbavhTnTHRYqemiDoBTeusRjwy3w4A</con:value>
+        </con:property>
+      </con:properties>
+      <con:returnProperties>
+        <con:entry>token_user</con:entry>
+      </con:returnProperties>
+      <con:runMode>PARALLELL</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="getAll" id="a611726a-c020-4bdd-ad1d-6daffbdec7db">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" resourcePath="/products" methodName="getAll" xsi:type="con:RestRequestStep">
+      <con:restRequest name="getAll" id="33b8dd81-d45d-46f2-a3e8-ec1c1d7991e4" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="Authorization" value="Bearer ${ejecutar Login USER#token_user}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://localhost/products</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="3b7f15e2-3720-40f4-ad52-4f5c8499bde2" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="7189dfa8-b592-4c21-9933-d7d765dfc1dc" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath RegEx Match" id="1fbc63bb-8ce5-45e1-a2bf-6a54938a3b8e" name="JSONPath RegEx Match">
+          <con:configuration>
+            <path>$</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+            <regEx>.*"id".*"name".*"serial".*</regEx>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonSchemaCompliance" id="9adaca0b-4a47-49c0-b8f9-34db1f29fd4c" name="JSON Schema Compliance">
+          <con:configuration>
+            <schemaUrl>http://localhost:9090/v3/api-docs</schemaUrl>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>Inherit From Parent</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder/>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasource" name="getIds from getAll" id="48ebb108-90bd-4b5c-af9a-cdd53e79757c">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="JSON">
+        <con:configuration>
+          <sourceStep>getAll</sourceStep>
+          <sourceProperty>Response</sourceProperty>
+          <rowPath>$</rowPath>
+          <columnPath>['id']</columnPath>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>pid</con:property>
+      <con:startRow>1</con:startRow>
+      <con:endRow>100</con:endRow>
+      <con:recordsPerIteration>2</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="getOne" id="f6483db9-584c-46e7-a961-1646aef150fa">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" methodName="getOne_1" resourcePath="/products/{pid}" xsi:type="con:RestRequestStep">
+      <con:restRequest name="getOne" id="e6eea807-a657-4524-934d-e49b22d3b8dc" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="Authorization" value="Bearer ${ejecutar Login USER#token_user}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://localhost/products/1</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="3078d44e-a2fb-426f-9bf1-54b8169a10f5" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="95b03e2f-cd26-4ece-8521-a74abe611c95" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath RegEx Match" id="ee9ed110-3f1b-4f04-9c37-01b12b37a183" name="JSONPath RegEx Match">
+          <con:configuration>
+            <path>$['id']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+            <regEx>[0-9]{1,}</regEx>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="pid" value="${getIds from getAll#pid}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="iterar sobre ids" id="01911993-0210-40c1-a814-76a450b46a97">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>getIds from getAll</dataSourceStep>
+      <targetStep>getOne</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

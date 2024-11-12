@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="f5a31a89-afdb-455d-bdbe-b488a21fd1ef" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Rechazo a zona privada para todos" searchProperties="true" timeout="0">
+  <con:settings id="7daba995-f2a7-44d8-9edf-e7d680179c63">
+    <con:setting id="f5a31a89-afdb-455d-bdbe-b488a21fd1effileName">Rechazo-a-zona-privada-para-todos</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="getAll" id="156fad68-5ff4-4140-97b4-0d467e1cd146">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" methodName="getAll" resourcePath="/products" xsi:type="con:RestRequestStep">
+      <con:restRequest name="getAll" id="a559b873-e230-4b47-8880-f187819cf26b" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://localhost/products</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="7c5bb62f-9105-4e92-a51e-d58bee0f7f1a" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>401</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="e088f498-fe88-42e8-8a6a-9b59d1fa548b" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Simple NotContains" id="6a42e407-57b4-4c53-b063-6b2af5235933" name="Not Contains">
+          <con:configuration>
+            <token/>
+            <ignoreCase>false</ignoreCase>
+            <useRegEx>false</useRegEx>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="a9afde42-e650-4306-8542-b49a5963b891" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import ProductUtils
+
+ProductUtils.validar401Null(messageExchange)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="getAll con filtros" id="d3c794a8-433f-4ff6-b964-3f487d4528a3">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" resourcePath="/products" methodName="getAll Filtros" xsi:type="con:RestRequestStep">
+      <con:restRequest name="getAll con filtros" id="a6664659-abaf-4285-bb53-bd3ff3dd374f" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://localhost/products</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="3662ac93-9b02-4348-9fe3-1ef223ca69d2" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>401</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="deaf717f-504c-48e0-8e68-77f1f3cb3ae8" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="44e75b4e-79c0-48bf-a624-4974f3eefa85" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import ProductUtils
+ProductUtils.validar401Null(messageExchange)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="text" value="Tr"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>text</con:entry>
+        </con:parameterOrder>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>156fad68-5ff4-4140-97b4-0d467e1cd146</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>d3c794a8-433f-4ff6-b964-3f487d4528a3</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>

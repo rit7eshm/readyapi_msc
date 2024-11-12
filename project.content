@@ -1,0 +1,10 @@
+Products-Management-API\%2Fauth%2Flogin.xml
+Products-Management-API\%2Fproducts.xml
+Products-Management-API\%2Fproducts%2F%7Bpid%7D.xml
+Products-Management-API\%2Fusers.xml
+Products-Management-API\%2Fusers%2F%7Buid%7D.xml
+Identificacion\Obtengo-token-USER.xml
+Productos\Rechazo-a-zona-privada-para-todos.xml
+Productos\Rechazo-a-zona-privada-cada-uno.xml
+Productos\Acceso-a-zona-privada-como-USER.xml
+Productos\Flujo-Navegacion-como-USER.xml

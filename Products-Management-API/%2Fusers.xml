@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config" name="/users" path="/users" id="f37d7b82-b9de-48f1-9dbc-46eca6844d45">
+  <con:settings id="96e244d2-47de-4f25-9740-d9a72449e365">
+    <con:setting id="f37d7b82-b9de-48f1-9dbc-46eca6844d45fileName">%2Fusers</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:method name="getAllUsers" id="04fc0cd6-56e5-400f-8ac9-5b1a9bd00c5f" method="GET">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="RESPONSE">
+      <con:mediaType>*/*</con:mediaType>
+      <con:status>412</con:status>
+      <con:params/>
+      <con:description>Precondition Failed</con:description>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>*/*</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>OK</con:description>
+    </con:representation>
+    <con:request name="Request 1" id="f31919dd-c25a-45d8-b6ba-e17edc38ec2f" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>http://localhost:9090</con:endpoint>
+      <con:request/>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:method name="createUser" id="2816eda2-a554-4e4e-b0ac-41c194581a23" method="POST">
+    <con:settings/>
+    <con:parameters/>
+    <con:representation type="RESPONSE">
+      <con:mediaType>*/*</con:mediaType>
+      <con:status>412</con:status>
+      <con:params/>
+      <con:description>Precondition Failed</con:description>
+    </con:representation>
+    <con:representation type="RESPONSE">
+      <con:mediaType>*/*</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:description>OK</con:description>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+      <con:sampleContent>{
+  "uid" : 0,
+  "email" : "string",
+  "password" : "string",
+  "role" : "USER"
+}</con:sampleContent>
+    </con:representation>
+    <con:request name="Request 1" id="fec32c31-9f71-4089-a3b6-2fd8684ab3c3" mediaType="application/json">
+      <con:settings/>
+      <con:endpoint>http://localhost:9090</con:endpoint>
+      <con:request>{\r
+  "uid" : 0,\r
+  "email" : "string",\r
+  "password" : "string",\r
+  "role" : "USER"\r
+}</con:request>
+      <con:credentials>
+        <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:environmentSpec>
+        <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+          <con:authProfile>Inherit From Parent</con:authProfile>
+        </con:entry>
+      </con:environmentSpec>
+    </con:request>
+    <con:environmentSpec>
+      <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+        <con:authProfile>Inherit From Parent</con:authProfile>
+      </con:entry>
+    </con:environmentSpec>
+  </con:method>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:resource>

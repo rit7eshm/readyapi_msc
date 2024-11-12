@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase xmlns:con="http://eviware.com/soapui/config" id="31f06a11-3201-4595-b158-3fad6e44ef49" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Rechazo a zona privada cada uno" searchProperties="true" timeout="0">
+  <con:settings id="77af1ce3-e645-45af-84ef-61df25e9df79">
+    <con:setting id="31f06a11-3201-4595-b158-3fad6e44ef49fileName">Rechazo-a-zona-privada-cada-uno</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="genIds" id="72fb909e-581b-47ef-9946-4755b909dddd">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="con:DataSourceStep">
+      <con:dataSource type="Data Generator">
+        <con:configuration>
+          <generatedDataCount>10</generatedDataCount>
+          <generatorsTotalNumber>1</generatorsTotalNumber>
+          <lastSelectedProperty>-1</lastSelectedProperty>
+          <GeneratorType0>INT</GeneratorType0>
+          <PropertyName0>pid</PropertyName0>
+          <repetitionCountpid>0</repetitionCountpid>
+          <repeatValuespid>false</repeatValuespid>
+          <IntegerDataGeneratorMinValuepid>1</IntegerDataGeneratorMinValuepid>
+          <IntegerDataGeneratorMaxValuepid>100</IntegerDataGeneratorMaxValuepid>
+          <IntegerDataGeneratorStepValuepid>1</IntegerDataGeneratorStepValuepid>
+          <IntegerDataGeneratorConsequentValuespid>false</IntegerDataGeneratorConsequentValuespid>
+          <escapeSpaceSequence/>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>pid</con:property>
+      <con:startRow>1</con:startRow>
+      <con:endRow>10</con:endRow>
+      <con:recordsPerIteration>1</con:recordsPerIteration>
+      <con:completeLastOperation>true</con:completeLastOperation>
+      <con:trimValues>false</con:trimValues>
+      <con:entitizeValues>false</con:entitizeValues>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:expandProperties>false</con:expandProperties>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="getOne" id="1ec92a70-6bcb-45a3-980c-5257ed0e114d">
+    <con:settings/>
+    <con:config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" service="Products Management API" methodName="getOne_1" resourcePath="/products/{pid}" xsi:type="con:RestRequestStep">
+      <con:restRequest name="getOne" id="d4ee3adb-0251-4203-9c8f-05ea83760c3c" mediaType="application/json">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://localhost:9090</con:endpoint>
+        <con:request/>
+        <con:originalUri>http://localhost/products/1</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="e46b3628-0bb1-4dc0-99d4-07778c2eacd1" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>401</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="ea272b9c-1247-45ed-9ad2-28fc31b04f09" name="Response SLA">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="GroovyScriptAssertion" id="198610a7-bf4d-4086-be24-fd642dd43650" name="Script Assertion">
+          <con:configuration>
+            <scriptText>import ProductUtils
+ProductUtils.validar401Null(messageExchange)</scriptText>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="pid" value="${genIds#pid}"/>
+        </con:parameters>
+        <con:environmentSpec>
+          <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+            <con:authProfile>Inherit From Parent</con:authProfile>
+          </con:entry>
+        </con:environmentSpec>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="3d035464-904f-45b0-98ed-93b28c4976f5">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>genIds</dataSourceStep>
+      <targetStep>getOne</targetStep>
+      <discardResults>false</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:environmentSpec>
+    <con:entry environmentId="43c8271f-2370-4c3e-81ab-c7b872e4c83e">
+      <con:authProfile>Inherit From Parent</con:authProfile>
+    </con:entry>
+  </con:environmentSpec>
+</con:testCase>
