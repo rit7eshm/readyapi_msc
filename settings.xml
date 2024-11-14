@@ -64,7 +64,10 @@
       <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
       <con:oAuth2Flow>JWT_GRANT</con:oAuth2Flow>
       <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
-      <con:jwtConfiguration/>
+      <con:jwtConfiguration>
+        <con:headerProperties/>
+        <con:payloadProperties/>
+      </con:jwtConfiguration>
       <con:responseType>id_token</con:responseType>
     </con:oAuth2Profile>
     <con:oAuth2Profile>
@@ -75,7 +78,10 @@
       <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
       <con:oAuth2Flow>JWT_GRANT</con:oAuth2Flow>
       <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
-      <con:jwtConfiguration/>
+      <con:jwtConfiguration>
+        <con:headerProperties/>
+        <con:payloadProperties/>
+      </con:jwtConfiguration>
       <con:responseType>id_token</con:responseType>
     </con:oAuth2Profile>
   </con:oAuth2ProfileContainer>
